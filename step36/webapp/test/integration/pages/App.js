@@ -14,7 +14,8 @@ sap.ui.define([
 						id: "helloDialogButton",
 						viewName: sViewName,
 						actions: new Press(),
-						errorMessage: "Did not find the 'Say Hello With Dialog' button on the HelloPanel view"
+						errorMessage: "Não foi encontrado 'Diga olá com o dialog' botão no PainelOlá view"
+
 					});
 				}
 			},
@@ -24,10 +25,9 @@ sap.ui.define([
 					return this.waitFor({
 						controlType: "sap.m.Dialog",
 						success: function () {
-							// we set the view busy, so we need to query the parent of the app
-							Opa5.assert.ok(true, "The dialog is open");
+							Opa5.assert.ok(true, "O dialogo foi aberto");
 						},
-						errorMessage: "Did not find the dialog control"
+						errorMessage: "Não foi encontrado o controle de dialogo"
 					});
 				}
 			}
