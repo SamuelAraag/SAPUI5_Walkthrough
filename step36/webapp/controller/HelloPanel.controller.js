@@ -1,7 +1,8 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/m/MessageToast"
-], function (Controller, MessageToast) {
+	"sap/m/MessageToast",
+	"sap/ui/core/syncStyleClass"
+], function (Controller, MessageToast, syncStyleClass) {
 	"use strict";
 
 	return Controller.extend("sap.ui.demo.walkthrough.controller.HelloPanel", {
@@ -17,11 +18,13 @@ sap.ui.define([
 		},
 
 		onOpenDialog : function () {
-			// create dialog lazily
 			if (!this.pDialog) {
 				this.pDialog = this.loadFragment({
 					name: "sap.ui.demo.walkthrough.view.HelloDialog"
-				});
+				}).then(function (oDialog){
+					syncStyleClass(this.getOwnerComponent().getContentDensityClass(), this.getView(), oDialog);
+					return oDialog;
+				}.bind(this));
 			}
 
 			this.pDialog.then(function(oDialog) {
